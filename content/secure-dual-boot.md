@@ -69,5 +69,4 @@ Congratulations 🎉️,
 
 you should now have secure boot working with dual booting Windows and Linux! Enjoy your newfound security and peace of mind. Gone are the days of gaming FOMO with friends. Now to game with friends you just reboot into Windows in disgust every minute as you game until you go to sleep at 3AM and wake up the next day smiling as you boot back into Linux.
 
-# linux #windows #dual-boot #secure-boot #grub #sbctl #security #uefi
 
