@@ -47,7 +47,7 @@ Phew. Got past the bad stuff, let's move on...
 # Checking that you can play your favorite games
 ## ProtonDB
 
- [ProtonDB](https://www.protondb.com/) is a great way to check if the games you love work on Linux.  The ratings listed are based on user feedback that are using Linux.
+ [ProtonDB](https://www.protondb.com/) is a great way to check if the games you love work on Linux.  The ratings listed are based on user feedback that are using Linux. **Note:** This only lists games purchaseable through Steam.
 
 About the rating system:
 - <span style="color:rgb(0, 176, 80)"><b>Native</b></span>
@@ -79,11 +79,11 @@ Proton is a bundle of compatibility tools, maintained by Valve, that bundles thi
 - **OpenGL**:
 	- This is old, and new games won't be using this, this is mostly older games now
 - **DirectX 11 (DX11)**
-	- A Microsoft exclusive, also older at this point, but a lot of games still have it and support it, some new games might not even support DirectX 12 at all
+	- A Microsoft exclusive, also older at this point, but a lot of games still have it and support it, some new games might not even support DirectX 12 at all and only support DX11.
 - **DirectX 12 (DX12)**
 	- The newest Microsoft tech, this is a graphics engine that is very complex and essentially gives very low level technology for game engines to use to interact with GPU
 - **Vulkan**
-	- This is one is cross platform, most games supporting Vulkan are able to be ran natively on Linux
+	- This is one is cross platform, most games supporting Vulkan are able to be ran natively on Linux. Vulkan is considered the most complex of these graphics engines but gives the most control of GPU.
 	
 **What proton does with these engines?**
  - If a game is running in DX11:
@@ -94,7 +94,7 @@ Proton is a bundle of compatibility tools, maintained by Valve, that bundles thi
 
 # Playing your favorite games
 
-There are many methods to play games on Steam, I'll go over a few here
+There are many methods to play games on Linux, I'll go over a few here
 
 ## Steam
 
@@ -114,7 +114,7 @@ Games bought from Steam store by default if non native, will use Proton. However
 5. From the dropdown you can select whichever Proton version you want, I usually recommend using *Proton Experimental* or downloading the latest *Proton GE*  (short for Glorious Eggroll)
 		- If you want to download extra Proton version to select here, you can use something like [ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)
 
-That is pretty much all you need to play games on Steam, it's that easy. I will go into some further help below in TODO
+That is pretty much all you need to play games on Steam, it's that easy. I will go into some further help below in [Utilizing Gamescope](#Utilizing Gamescope)
 
 ## Lutris
 [Lutris ](https://lutris.net/) is a launcher that has a lot of already made game specific scripts that install appropriate Wine, DLLs, fonts etc needed to play games. This is mostly useful for non steam games, although Steam tends to still be the easier route, but if you just can't get it working in Steam, Lutris is a good fallback. It has plenty of graphical customization for you to use and can even add the configured game to your Steam library, which is just a shortcut that will launch the game through Lutris.
@@ -139,7 +139,7 @@ I won't go into all of  its arguments you can pass to it, but here is just a few
 	- `-w 3440 -h 1440` width and height for game content
 	- `-W 3440 -H 1440` width and height for output window (you can set this and the one above)
 
-As I mentioned previously, it also possible to run Gamescope from a display manager, i.e from your TTY, which will work similar to how Steam Deck or the new Steam Machine works. The downside is if you have things you want open like discord, web browser etc, you shouldn't need to run Gamescope like this unless you're making a living room Linux home-rolled Steam machine
+As I mentioned previously, it also possible to run Gamescope from a display manager, i.e from your TTY, which will work similar to how Steam Deck or the new Steam Machine works. The downside is if you have things you want open like discord, web browser etc, you shouldn't need to run Gamescope like this unless you're making a living room Linux home-rolled Steam machine.
 
 ## How to use Gamescope
 1. Install using your distributions package manager or build from source
