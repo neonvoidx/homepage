@@ -9,7 +9,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       github: "https://github.com/neonvoidx",
-      email: "mailto:alias@pass.neonvoid.dev",
+      email: "mailto:me+blog@neonvoid.dev",
       matrix: "https://matrix.to/#/@neon_void:matrix.org",
       discord: "https://discord.com/users/184896010969939969",
       kofi: "https://ko-fi.com/neonvoidx",
