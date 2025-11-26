@@ -30,7 +30,7 @@ _However there are some caveats..._
 
 - HDR Support
   - Not all Linux desktop environments and window managers have HDR support, here are a few that **do** (not all inclusive):
-    - [Hyprland](window-manager-choice)
+    - [Hyprland](window-manager-choice.md)
     - KDE Plasma
     - Gamescope
       - _yes_ , Gamescope is its own compositor, and can be ran from a TTY like other desktop environments and window managers

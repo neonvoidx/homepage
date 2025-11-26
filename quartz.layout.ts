@@ -8,8 +8,11 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/neonvoidx",
-      KoFi: "https://ko-fi.com/neonvoidx",
+      github: "https://github.com/neonvoidx",
+      email: "mailto:me@neonvoid.dev",
+      matrix: "https://matrix.to/#/@neon_void:matrix.org",
+      discord: "https://discord.com/users/184896010969939969",
+      kofi: "https://ko-fi.com/neonvoidx",
     },
   }),
 }
