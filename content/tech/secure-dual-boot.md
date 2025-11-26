@@ -19,7 +19,7 @@ Most of the steps here I stole from a Reddit post a long time ago and stashed in
 
 - You are dual booting with Linux and Windows
   - This means you already have Linux and Windows installed, whether they are on separate drives or partitions
-- You are using `grub` as your bootloader
+- You are using `grub`[^1] as your bootloader
 
 ## Steps
 
@@ -29,7 +29,7 @@ Most of the steps here I stole from a Reddit post a long time ago and stashed in
 2. Regenerate your grub configuration:
    - `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
-3. Install the sbctl tool (assuming Arch here, use your package manager or build from source otherwise):
+3. Install the sbctl[^2] tool (assuming Arch here, use your package manager or build from source otherwise):
    - `sudo pacman -S sbctl`
 
 4. As a pre-requisite, in your UEFI settings, set your secure boot mode to setup mode. This means entering BIOS and putting secure boot mode in setup mode, if you don't see a "setup" mode for secure boot, often this just means clearing keys and disabling.
@@ -68,4 +68,7 @@ _Note:_ that sbctl comes with a pacman hook for automatic signing, so you don't 
 Congratulations 🎉️,
 
 you should now have secure boot working with dual booting Windows and Linux! Enjoy your newfound security and peace of mind. Gone are the days of gaming FOMO with friends. Now to game with friends you just reboot into Windows in disgust every minute as you game until you go to sleep at 3AM and wake up the next day smiling as you boot back into Linux.
+
+[^1]: https://www.gnu.org/software/grub/
+[^2]: https://github.com/Foxboron/sbctl
 

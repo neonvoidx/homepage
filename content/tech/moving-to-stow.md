@@ -14,15 +14,15 @@ tags:
 
 # Why?
 
-I was using [yadm](https://yadm.io/) to manage my dotfiles, but I found it to be a bit cumbersome for my needs. First, the management of entire home directory recursively with git had its quirks, I had to have a lot of `.gitignore`s and anytime I accidentally muscle memory typed `yadm add .` in my home folder, I was in for a bad time. I wanted a simpler solution that would allow me to manage my dotfiles more easily and with less overhead.
+I was using yadm[^1] to manage my dotfiles, but I found it to be a bit cumbersome for my needs. First, the management of entire home directory recursively with git had its quirks, I had to have a lot of `.gitignore`s and anytime I accidentally muscle memory typed `yadm add .` in my home folder, I was in for a bad time. I wanted a simpler solution that would allow me to manage my dotfiles more easily and with less overhead.
 
 # Finding something new
 
-I started looking around. Found [chezmoi](https://www.chezmoi.io/), and absolutely disliked it's management style, it's just not for me, and I'm not really sure what the hype is about. I heard nothing but praise for [stow](https://www.gnu.org/software/stow/), it's old and ancient (in the best ways), it's simple, and it's GNU. What's not to love?.
+I started looking around. Found chezmoi[^2], and absolutely disliked it's management style, it's just not for me, and I'm not really sure what the hype is about. I heard nothing but praise for stow[^3], it's old and ancient (in the best ways), it's simple, and it's GNU. What's not to love?.
 
 # Difficulties
 
-I use multiple machines, a Macbook for work, Arch on my main desktop, and Arch on my laptop. With yadm I had the semi-nice option of Jinja templates and alternate files, i.e being able to have `.gitconfig##os.Darwin` vs `.gitconfig##default` etc.
+I use multiple machines, a Macbook for work, Arch[^4] on my main desktop, and Arch on my laptop. With yadm I had the semi-nice option of Jinja[^5] templates and alternate files, i.e being able to have `.gitconfig##os.Darwin` vs `.gitconfig##default` etc.
 
 ## So how do we solve this in stow?
 
@@ -66,7 +66,7 @@ echo
 echo "Dotfiles updated successfully!"
 ```
 
-First this updates my git submodules, for me I keep my pics (wallpapers), neovim config, and obsidian vault as separate repos.
+First this updates my git submodules, for me I keep my pics (wallpapers), neovim[^6] config, and obsidian[^7] vault as separate repos.
 
 This runs `stow common` followed by auto detecting my OS by `uname -s` and running stow on appropriate OS folder.
 
@@ -80,4 +80,12 @@ Obviously we want this in git, so we just `cd ~/dotfiles && git init && git add 
   - The best way is either:
     - remove those files, then stow
     - `stow --adopt` and then drop changes in dotfiles with something like `git clean -xfd`
+
+[^1]: https://yadm.io/
+[^2]: https://www.chezmoi.io/
+[^3]: https://www.gnu.org/software/stow/
+[^4]: https://archlinux.org/
+[^5]: https://jinja.palletsprojects.com/
+[^6]: https://neovim.io/
+[^7]: https://obsidian.md/
 
