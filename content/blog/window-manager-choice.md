@@ -12,7 +12,7 @@ tags:
 ---
 # Why oh why didn't _you_ choose Hyprland?
 
-![Why oh why](../images/whyohwhy.gif)
+![Why oh why](whyohwhy.gif)
 
 Not sure to be honest, you should though!
 
@@ -78,6 +78,7 @@ Written by DreamMaoMao, this is a dwl[^14] inspired window manager for Wayland, 
 
 - Still in its infancy, has some bugs
 - The IPC support isn't great yet, it's not well documented (at the time of writing) and hard to work with
+
 
 [^1]: <https://hypr.land/>
 
