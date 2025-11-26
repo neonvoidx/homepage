@@ -44,10 +44,6 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer({
       title: "~",
       sortFn: (a, b) => {
-        // Folders first
-        if (a.isFolder && !b.isFolder) return -1
-        if (!a.isFolder && b.isFolder) return 1
-
         // Sort by created date descending (newest first)
         const aCreated = a?.data?.date
         const bCreated = b?.data?.date
