@@ -2,7 +2,7 @@
 title: Wayland Window Managers
 draft: false
 description: So which Wayland window manager are we using?
-created: 2025-11-25T00:00:00.000Z
+created: 2025-11-25 00:00
 tags:
   - linux
   - wayland
@@ -11,7 +11,7 @@ tags:
   - niri
   - mangowc
 ---
-### Why oh why didn't _you_ choose Hyprland?
+# Why oh why didn't _you_ choose Hyprland?
 
 ![Why oh why](../images/whyohwhy.gif)
 
@@ -40,7 +40,7 @@ It offers master and dwindle layouts, the customization options are endless, and
   - because of this I recommend building this in order manually if you plan on using latest HEAD commits. While this isn't as nice as installing a single package and praying, it gives you a better peace of mind that things wont break
     - You can find my **(probably suboptimal opinionated)** script [here](https://github.com/neonvoidx/dotfiles/blob/master/linux/dev/hypr/rebuild.sh), which clones all repos needed, updates from latest commits, and builds them in order (I build Hyprland without UWSM, because it's icky). But if it doesn't work, don't ping me, open a PR or move on lol.
 
-### Other Wayland window managers
+## Other Wayland window managers
 
 #### [Niri](https://yalter.github.io/niri/)
 

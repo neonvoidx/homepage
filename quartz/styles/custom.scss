@@ -1,3 +1,52 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// Eldritch heading colors
+h1 {
+  color: #04d1f9 !important;
+}
+
+h1.article-title {
+  color: #a48cf2 !important;
+}
+
+h2 {
+  color: #a48cf2 !important;
+}
+
+h3 {
+  color: #f265b5 !important;
+}
+
+h4 {
+  color: #7081d0 !important;
+}
+
+h5 {
+  color: #f1fc79 !important;
+}
+
+h6 {
+  color: #f16c75 !important;
+}
+
+// Eldritch green links
+a {
+  color: #37f499 !important;
+  
+  &:hover {
+    color: #00FA82 !important;
+  }
+  
+  // current active link
+  &.active, &[aria-current="page"] {
+    color: #04d1f9 !important;
+  }
+}
+
+// Center all images in markdown content
+article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

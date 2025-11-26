@@ -1,7 +1,7 @@
 ---
 title: Secure Dual Boot
 description: How to secure dual boot with Windows and Linux
-created: 2025-09-02T00:00:00.000Z
+created: 2025-09-02 00:00
 draft: false
 tags:
   - linux
@@ -9,19 +9,19 @@ tags:
   - gaming
   - windows
 ---
-### How to secure boot when dual booting (i.e Linux and Windows)
+# How to secure boot when dual booting (i.e Linux and Windows)
 
 If you are like me you love Linux, hate Windows, but have gaming FOMO because your friends make you play games like League of Legends.
 
 Most of the steps here I stole from a Reddit post a long time ago and stashed in my notes, but can no longer find. If you find it let me know and I'll credit it here.
 
-### Prerequisites
+## Prerequisites
 
 - You are dual booting with Linux and Windows
   - This means you already have Linux and Windows installed, whether they are on separate drives or partitions
 - You are using `grub` as your bootloader
 
-### Steps
+## Steps
 
 1. Re-install GRUB to utilize Microsoft's CA certificates (as opposed to shim) -- replace 'esp' with your EFI system partition:
    - `sudo grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB --modules="tpm" --disable-shim-lock`

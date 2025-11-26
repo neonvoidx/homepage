@@ -1,7 +1,7 @@
 ---
 title: Moving to stow from yadm
 description: Dotfile management with GNU Stow
-created: 2025-11-22T00:00:00.000Z
+created: 2025-11-22 00:00
 draft: false
 tags:
   - linux
@@ -11,19 +11,20 @@ tags:
   - stow
   - yadm
 ---
-## Why?
+
+# Why?
 
 I was using [yadm](https://yadm.io/) to manage my dotfiles, but I found it to be a bit cumbersome for my needs. First, the management of entire home directory recursively with git had its quirks, I had to have a lot of `.gitignore`s and anytime I accidentally muscle memory typed `yadm add .` in my home folder, I was in for a bad time. I wanted a simpler solution that would allow me to manage my dotfiles more easily and with less overhead.
 
-## Finding something new
+# Finding something new
 
 I started looking around. Found [chezmoi](https://www.chezmoi.io/), and absolutely disliked it's management style, it's just not for me, and I'm not really sure what the hype is about. I heard nothing but praise for [stow](https://www.gnu.org/software/stow/), it's old and ancient (in the best ways), it's simple, and it's GNU. What's not to love?.
 
-## Difficulties
+# Difficulties
 
 I use multiple machines, a Macbook for work, Arch on my main desktop, and Arch on my laptop. With yadm I had the semi-nice option of Jinja templates and alternate files, i.e being able to have `.gitconfig##os.Darwin` vs `.gitconfig##default` etc.
 
-### So how do we solve this in stow?
+## So how do we solve this in stow?
 
 It's simple! I created my ~/dotfiles folder. Inside this I have multiple subfolder:
 
