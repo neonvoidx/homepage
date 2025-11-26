@@ -8,8 +8,8 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "neonvoid @ ~",
-    pageTitleSuffix: "",
+    pageTitle: "$neonvoid",
+    pageTitleSuffix: " @ void",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -23,8 +23,9 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Roboto",
-        body: "Roboto",
+        title: "Lexend Deca",
+        header: "Lexend Deca",
+        body: "Lexend Deca",
         code: "JetBrains Mono",
       },
       colors: {
@@ -61,15 +62,16 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "material-theme-lighter",
-          dark: "material-theme-palenight",
+          light: "dracula",
+          dark: "dracula",
         },
-        keepBackground: false,
+        keepBackground: true,
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.HardLineBreaks(),
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest", prettyLinks: true }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
@@ -78,11 +80,21 @@ const config: QuartzConfig = {
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
       Plugin.ContentPage(),
-      Plugin.FolderPage(),
+      Plugin.FolderPage({
+        sort(f1, f2) {
+          if (f1?.dates?.created && f2?.dates?.created) {
+            const a = f1.dates.created
+            const b = f2.dates.created
+            return b > a ? 1 : -1
+          }
+          return 1
+        },
+      }),
       Plugin.TagPage(),
       Plugin.ContentIndex({
         enableSiteMap: true,
         enableRSS: true,
+        rssFullHtml: true,
       }),
       Plugin.Assets(),
       Plugin.Static(),

@@ -1,7 +1,7 @@
 ---
 title: Secure Dual Boot
 description: How to secure dual boot with Windows and Linux
-date: 2025-09-02T00:00:00.000Z
+created: 2025-09-02T00:00:00.000Z
 draft: false
 tags:
   - linux
@@ -68,5 +68,4 @@ _Note:_ that sbctl comes with a pacman hook for automatic signing, so you don't 
 Congratulations 🎉️,
 
 you should now have secure boot working with dual booting Windows and Linux! Enjoy your newfound security and peace of mind. Gone are the days of gaming FOMO with friends. Now to game with friends you just reboot into Windows in disgust every minute as you game until you go to sleep at 3AM and wake up the next day smiling as you boot back into Linux.
-
 

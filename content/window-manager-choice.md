@@ -2,15 +2,18 @@
 title: Wayland Window Managers
 draft: false
 description: So which Wayland window manager are we using?
-date: 2025-11-25T00:00:00.000Z
+created: 2025-11-25T00:00:00.000Z
 tags:
   - linux
   - wayland
   - dotfiles
+  - hyprland
+  - niri
+  - mangowc
 ---
 ### Why oh why didn't _you_ choose Hyprland?
 
-![Why oh why](./images/whyohwhy.gif)
+![Why oh why](../images/whyohwhy.gif)
 
 Not sure to be honest, you should though!
 

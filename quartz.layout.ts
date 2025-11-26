@@ -8,8 +8,8 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      GitHub: "https://github.com/neonvoidx",
+      KoFi: "https://ko-fi.com/neonvoidx",
     },
   }),
 }
@@ -38,7 +38,27 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      title: "~",
+      sortFn: (a, b) => {
+        // Folders first
+        if (a.isFolder && !b.isFolder) return -1
+        if (!a.isFolder && b.isFolder) return 1
+
+        // Sort by created date descending (newest first)
+        const aCreated = a?.data?.date
+        const bCreated = b?.data?.date
+        if (aCreated && bCreated) {
+          return bCreated.getTime() - aCreated.getTime()
+        }
+
+        // Fallback to alphabetical if no dates
+        return a.displayName.localeCompare(b.displayName, undefined, {
+          numeric: true,
+          sensitivity: "base",
+        })
+      },
+    }),
   ],
   right: [
     Component.Graph(),

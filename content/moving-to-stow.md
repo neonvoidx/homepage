@@ -1,12 +1,15 @@
 ---
-title: Moving to Stow from yadm
+title: Moving to stow from yadm
 description: Dotfile management with GNU Stow
-date: 2025-11-22T00:00:00.000Z
+created: 2025-11-22T00:00:00.000Z
 draft: false
 tags:
   - linux
   - mac
   - dotfiles
+  - gnu
+  - stow
+  - yadm
 ---
 ## Why?
 
@@ -75,5 +78,5 @@ Obviously we want this in git, so we just `cd ~/dotfiles && git init && git add 
 - How do you solve issues when you already have existing files on system and try to stow?
   - The best way is either:
     - remove those files, then stow
-    - stow --adopt and then drop changes in dotfiles
+    - `stow --adopt` and then drop changes in dotfiles with something like `git clean -xfd`
 
