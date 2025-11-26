@@ -1,5 +1,6 @@
 ---
 title: neonvoid
+socialImage: og-image.png
 ---
 
 <div style="text-align: center;">
