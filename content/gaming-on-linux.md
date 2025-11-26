@@ -10,12 +10,9 @@ tags:
   - Gamescope
   - proton
   - wine
-title: So you want to game on Wayland eh...?
-desc: >-
-  Specifically Wayland & Tiling window managers, but some of this is relevant to
-  Linux in general
+title: Linux Gaming 101 (Wayland)
 ---
-![Gabe the G](gabe.png){width=300}
+![Gabe the G|350](gabe.png)
 
 # Linux and its recent evolution
 
@@ -33,7 +30,7 @@ _However there are some caveats..._
 
 - HDR Support
   - Not all Linux desktop environments and window managers have HDR support, here are a few that **do** (not all inclusive):
-    - Hyprland
+    - [Hyprland](window-manager-choice)
     - KDE Plasma
     - Gamescope
       - _yes_ , Gamescope is its own compositor, and can be ran from a TTY like other desktop environments and window managers
@@ -213,8 +210,6 @@ If you have any questions let me know, this was mostly from memory, and my journ
 [^7]: [New Steam Machines Announcement](https://store.steampowered.com/sale/steammachine) - Valve's renewed Steam Machine initiative
 
 [^8]: [ProtonDB](https://www.protondb.com/) - Community database for game compatibility ratings
-
-
 
 [^11]: [ProtonUp-Qt](https://davidotek.github.io/protonup-qt/) - Proton version manager
 

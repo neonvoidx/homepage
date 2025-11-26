@@ -1,8 +1,7 @@
 ---
-title: Wayland Window Managers
+title: Choosing a Wayland DE/WM
 draft: false
-description: So which Wayland window manager are we using?
-created: 2025-11-25 00:00
+created: '2025-11-25 00:00'
 tags:
   - linux
   - wayland
@@ -80,18 +79,31 @@ Written by DreamMaoMao, this is a dwl[^14] inspired window manager for Wayland, 
 - Still in its infancy, has some bugs
 - The IPC support isn't great yet, it's not well documented (at the time of writing) and hard to work with
 
-[^1]: https://hypr.land/
-[^2]: https://github.com/neonvoidx/dotfiles/blob/master/linux/dev/hypr/rebuild.sh
-[^3]: https://yalter.github.io/niri/
-[^4]: https://github.com/DreamMaoMao/mangowc
-[^5]: https://i3wm.org/
-[^6]: https://swaywm.org/
-[^7]: https://awesomewm.org/
-[^8]: https://dwm.suckless.org/
-[^9]: https://gitlab.freedesktop.org/wlroots/wlroots
-[^10]: https://aur.archlinux.org/
-[^11]: https://www.rust-lang.org/
-[^12]: https://kdl.dev/
-[^13]: https://github.com/Smithay/smithay
-[^14]: https://codeberg.org/dwl/dwl
+[^1]: <https://hypr.land/>
+
+[^2]: <https://github.com/neonvoidx/dotfiles/blob/master/linux/dev/hypr/rebuild.sh>
+
+[^3]: <https://yalter.github.io/niri/>
+
+[^4]: <https://github.com/DreamMaoMao/mangowc>
+
+[^5]: <https://i3wm.org/>
+
+[^6]: <https://swaywm.org/>
+
+[^7]: <https://awesomewm.org/>
+
+[^8]: <https://dwm.suckless.org/>
+
+[^9]: <https://gitlab.freedesktop.org/wlroots/wlroots>
+
+[^10]: <https://aur.archlinux.org/>
+
+[^11]: <https://www.rust-lang.org/>
+
+[^12]: <https://kdl.dev/>
+
+[^13]: <https://github.com/Smithay/smithay>
+
+[^14]: <https://codeberg.org/dwl/dwl>
 

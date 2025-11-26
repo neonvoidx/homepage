@@ -1,7 +1,6 @@
 ---
-title: Moving to stow from yadm
-description: Dotfile management with GNU Stow
-created: 2025-11-22 00:00
+title: Dotfile management
+created: '2025-11-22 00:00'
 draft: false
 tags:
   - linux
@@ -11,8 +10,7 @@ tags:
   - stow
   - yadm
 ---
-
-# Why?
+# Dotfile management and moving from yadm to GNU stow
 
 I was using yadm[^1] to manage my dotfiles, but I found it to be a bit cumbersome for my needs. First, the management of entire home directory recursively with git had its quirks, I had to have a lot of `.gitignore`s and anytime I accidentally muscle memory typed `yadm add .` in my home folder, I was in for a bad time. I wanted a simpler solution that would allow me to manage my dotfiles more easily and with less overhead.
 
@@ -81,11 +79,17 @@ Obviously we want this in git, so we just `cd ~/dotfiles && git init && git add 
     - remove those files, then stow
     - `stow --adopt` and then drop changes in dotfiles with something like `git clean -xfd`
 
-[^1]: https://yadm.io/
-[^2]: https://www.chezmoi.io/
-[^3]: https://www.gnu.org/software/stow/
-[^4]: https://archlinux.org/
-[^5]: https://jinja.palletsprojects.com/
-[^6]: https://neovim.io/
-[^7]: https://obsidian.md/
+[^1]: <https://yadm.io/>
+
+[^2]: <https://www.chezmoi.io/>
+
+[^3]: <https://www.gnu.org/software/stow/>
+
+[^4]: <https://archlinux.org/>
+
+[^5]: <https://jinja.palletsprojects.com/>
+
+[^6]: <https://neovim.io/>
+
+[^7]: <https://obsidian.md/>
 
