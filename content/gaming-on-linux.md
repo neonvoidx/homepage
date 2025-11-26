@@ -114,7 +114,7 @@ Games bought from Steam store by default if non native, will use Proton. However
 5. From the dropdown you can select whichever Proton version you want, I usually recommend using *Proton Experimental* or downloading the latest *Proton GE*  (short for Glorious Eggroll)
 		- If you want to download extra Proton version to select here, you can use something like [ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)
 
-That is pretty much all you need to play games on Steam, it's that easy. I will go into some further help below in [Utilizing Gamescope](#Utilizing Gamescope)
+That is pretty much all you need to play games on Steam, it's that easy. I will go into some further help below in [Utilizing Gamescope](#utilizing-gamescope)
 
 ## Lutris
 [Lutris ](https://lutris.net/) is a launcher that has a lot of already made game specific scripts that install appropriate Wine, DLLs, fonts etc needed to play games. This is mostly useful for non steam games, although Steam tends to still be the easier route, but if you just can't get it working in Steam, Lutris is a good fallback. It has plenty of graphical customization for you to use and can even add the configured game to your Steam library, which is just a shortcut that will launch the game through Lutris.
