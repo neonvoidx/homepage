@@ -43,6 +43,7 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.Explorer({
       title: "~",
+      folderDefaultState: "open",
       sortFn: (a, b) => {
         // Sort by created date descending (newest first)
         const aCreated = a?.data?.date
