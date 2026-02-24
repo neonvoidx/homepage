@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>Linux Gaming 101 (Wayland) @ void</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend Deca:wght@400;700&amp;family=Lexend Deca:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend Deca:wght@400;600&amp;text=%24neonvoid&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="$neonvoid"/><meta property="og:title" content="Linux Gaming 101 (Wayland) @ void"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Linux Gaming 101 (Wayland) @ void"/><meta name="twitter:description" content="Linux and its recent evolution Linux gaming has highly evolved over the last few years, mostly because of Valve’s commitment to Gamescope1, Proton2, and Steam3."/><meta property="og:description" content="Linux and its recent evolution Linux gaming has highly evolved over the last few years, mostly because of Valve’s commitment to Gamescope1, Proton2, and Steam3."/><meta property="og:image:alt" content="Linux and its recent evolution Linux gaming has highly evolved over the last few years, mostly because of Valve’s commitment to Gamescope1, Proton2, and Steam3."/><meta property="og:image" content="https://neonvoid.dev/static/og-image.png"/><meta property="og:image:url" content="https://neonvoid.dev/static/og-image.png"/><meta name="twitter:image" content="https://neonvoid.dev/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="neonvoid.dev"/><meta property="og:url" content="https://neonvoid.dev/blog/gaming-on-linux"/><meta property="twitter:url" content="https://neonvoid.dev/blog/gaming-on-linux"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Linux and its recent evolution Linux gaming has highly evolved over the last few years, mostly because of Valve’s commitment to Gamescope1, Proton2, and Steam3."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvcnVubmVyL3dvcmsvdmF1bHQvdmF1bHQvcXVhcnR6LXNyYy9xdWFydHovY29tcG9uZW50cy9zdHlsZXMiLCJzb3VyY2VzIjpbIm1lcm1haWQuaW5saW5lLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUdGO0VBQ0U7OztBQUtGO0VBQ0U7RUFDQTs7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjFzIGVhc2U7XG4gICAgICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICAgICAgbWluLXdpZHRoOiAyMDBweDtcblxuICAgICAgcHJlIHtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICB9XG5cbiAgICAgIHN2ZyB7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgaGVpZ2h0OiBhdXRvO1xuICAgICAgfVxuICAgIH1cblxuICAgICYgPiAubWVybWFpZC1jb250cm9scyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBib3R0b206IDIwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBnYXA6IDhweDtcbiAgICAgIHBhZGRpbmc6IDhweDtcbiAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICBib3gtc2hhZG93OiAwIDJweCA0cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgei1pbmRleDogMjtcblxuICAgICAgLm1lcm1haWQtY29udHJvbC1idXR0b24ge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDMycHg7XG4gICAgICAgIGhlaWdodDogMzJweDtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHQpO1xuICAgICAgICBjb2xvcjogdmFyKC0tZGFyayk7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiB2YXIoLS1ib2R5Rm9udCk7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgfVxuXG4gICAgICAgICY6YWN0aXZlIHtcbiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTtcbiAgICAgICAgfVxuXG4gICAgICAgIC8vIFN0eWxlIHRoZSByZXNldCBidXR0b24gZGlmZmVyZW50bHlcbiAgICAgICAgJjpudGgtY2hpbGQoMikge1xuICAgICAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgICAgIHBhZGRpbmc6IDAgMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://neonvoid.dev/index.xml"/></head><body data-slug="blog/gaming-on-linux"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">$neonvoid</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="open" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>{let aCreated=a?.data?.date,bCreated=b?.data?.date;return aCreated&amp;&amp;bCreated?bCreated.getTime()-aCreated.getTime():a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;})}&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-8"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>~</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-8" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../blog/">blog</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Linux Gaming 101 (Wayland)</a></div></nav><h1 class="article-title">Linux Gaming 101 (Wayland)</h1><p show-comma="true" class="content-meta"><time datetime="2025-11-25T20:56:00.000Z">Nov 25, 2025</time><span>11 min read</span></p><ul class="tags"><li><a href="../tags/gaming" class="internal tag-link">gaming</a></li><li><a href="../tags/linux" class="internal tag-link">linux</a></li><li><a href="../tags/wayland" class="internal tag-link">wayland</a></li><li><a href="../tags/steam" class="internal tag-link">steam</a></li><li><a href="../tags/valve" class="internal tag-link">valve</a></li><li><a href="../tags/Gamescope" class="internal tag-link">Gamescope</a></li><li><a href="../tags/proton" class="internal tag-link">proton</a></li><li><a href="../tags/wine" class="internal tag-link">wine</a></li></ul></div></div><article class="popover-hint"><p><img src="../assets/gabe.png" alt="Gabe the G|350"/></p>
+<h1 id="linux-and-its-recent-evolution">Linux and its recent evolution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#linux-and-its-recent-evolution" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>Linux gaming has highly evolved over the last few years, mostly because of Valve’s commitment to Gamescope<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label" class="internal alias">1</a></sup>, Proton<sup><a href="#user-content-fn-2" id="user-content-fnref-2" data-footnote-ref aria-describedby="footnote-label" class="internal alias">2</a></sup>, and Steam<sup><a href="#user-content-fn-3" id="user-content-fnref-3" data-footnote-ref aria-describedby="footnote-label" class="internal alias">3</a></sup>. Gabe Newell said “Rely on Microsoft and Windows? nah, pass”, and for that we are grateful. Linux desktop usage has risen to be over 5% globally now<sup><a href="#user-content-fn-4" id="user-content-fnref-4" data-footnote-ref aria-describedby="footnote-label" class="internal alias">4</a></sup>, which right now seems small, but is a major feat.</p>
+<p>Because of these improvements, gaming on Linux is actually pretty awesome, most of the time the games I used to play on Windows actually run better on Linux.</p>
+<p>You may have heard of the Steam Deck<sup><a href="#user-content-fn-5" id="user-content-fnref-5" data-footnote-ref aria-describedby="footnote-label" class="internal alias">5</a></sup>, a handheld platform from Valve, this is actually a Linux handheld, running SteamOS<sup><a href="#user-content-fn-6" id="user-content-fnref-6" data-footnote-ref aria-describedby="footnote-label" class="internal alias">6</a></sup>, which is based on Arch and tailored by Valve . Valve also just recently announced the new Steam Machine<sup><a href="#user-content-fn-7" id="user-content-fnref-7" data-footnote-ref aria-describedby="footnote-label" class="internal alias">7</a></sup> (not the old one that failed), this is only going to improve Linux gaming over the next few years!</p>
+<p><em>However there are some caveats…</em></p>
+<h1 id="caveats">Caveats?<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#caveats" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><img src="../assets/huh.gif" alt="huh|250"/></p>
+<ul>
+<li>HDR Support
+<ul>
+<li>Not all Linux desktop environments and window managers have HDR support, here are a few that <strong>do</strong> (not all inclusive):
+<ul>
+<li><a href="../blog/window-manager-choice" class="internal alias" data-slug="blog/window-manager-choice">Hyprland</a></li>
+<li>KDE Plasma</li>
+<li>Gamescope
+<ul>
+<li><em>yes</em> , Gamescope is its own compositor, and can be ran from a TTY like other desktop environments and window managers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NVIDIA
+<ul>
+<li>NVIDIA drivers can be wonky, some users often report getting about 10-20% less performance on Linux. This is because NVIDIA’s drivers are not open source and integrated into distributions like AMD, which are integrated into mesa and amdgpu, which are often automatically bundled with your distribution. You’ll have to go through some setup here and you’ll also have to check which drivers you want to use, closed vs open, and probably modify some kernel launch arguments.</li>
+<li>NVIDIA GPU also require some extra environmental arguments on Wayland</li>
+<li>NVIDIA’s proprietary drivers historically had gaps (Wayland/GBM vs EGLStreams, tooling differences), but performance varies widely by driver version, kernel, game, and Proton/Wine configuration. NVIDIA has improved Wayland/GBM support in recent drivers.</li>
+</ul>
+</li>
+<li>Not all games run on Linux. At the time of writing this though, a large majority of popular titles are reported playable. Some games will require some manual tweaking, unlike Windows where you just click install and play, this won’t always be the case for Linux though, luckily there are helpful resources most of the time to make this easier.</li>
+</ul>
+<p>Phew. Got past the bad stuff, let’s move on…</p>
+<h1 id="checking-that-you-can-play-your-favorite-games">Checking that you can play your favorite games<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#checking-that-you-can-play-your-favorite-games" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="protondb">ProtonDB<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#protondb" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>ProtonDB<sup><a href="#user-content-fn-8" id="user-content-fnref-8" data-footnote-ref aria-describedby="footnote-label" class="internal alias">8</a></sup> is a great way to check if the games you love work on Linux. The ratings listed are based on user feedback that are using Linux. <strong>Note:</strong> This only lists games purchaseable through Steam.</p>
+<p>About the rating system:</p>
+<ul>
+<li><span style="color:rgb(0, 176, 80);"><b>Native</b></span>
+<ul>
+<li>that means it works out of the box on Linux without using Proton (more on this later)</li>
+</ul>
+</li>
+<li><span style="color:rgb(0, 176, 240);"><b>Platinum</b></span>
+<ul>
+<li>it’s pretty much guaranteed to work under Proton, flawlessly</li>
+</ul>
+</li>
+<li><span style="color:rgb(255, 255, 0);"><b>Gold</b></span>
+<ul>
+<li>also pretty much guaranteed to work under Proton, but may need some launch arg tweaks</li>
+</ul>
+</li>
+<li><span style="color:rgb(143, 143, 143);"><b>Silver</b></span>
+<ul>
+<li>Probably works, with some tweaking</li>
+</ul>
+</li>
+<li><span style="color:rgb(255, 192, 0);"><b>Bronze</b></span>
+<ul>
+<li>Mostly unplayable, slight chance based on hardware and mass amount of tweaking</li>
+</ul>
+</li>
+<li><span style="color:rgb(255, 0, 0);"><b>Borked</b> </span>
+<ul>
+<li>Complete trash, doesn’t work at all, 99% of the time it’s because of kernel level anti-cheat and a shitty game dev company that doesn’t care about you and doesn’t deserve your money.
+<ul>
+<li><em>Hint:</em> Buy this game on Steam, then immediately refund it and list the reason as <em>“No Linux Support”</em>, this lets the developers/publishers that they lost money and why.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>NOTE</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Refunds on Steam are governed by Steam’s policy (usually within 14 days and under 2 hours playtime). So if you do this, make sure you don’t play it a bunch!</p>
+</div>
+</blockquote>
+<h2 id="native-vs-proton">Native vs Proton<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#native-vs-proton" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="native">Native<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#native" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>It’s what it sounds like, it will run on Linux with no compatibility layers needed.</p>
+<h3 id="proton">Proton<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#proton" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="wine-prelude-to-proton">Wine (prelude to Proton)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#wine-prelude-to-proton" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Wine is a compatibility layer to run Windows games and applications on Linux. This allows us to run things not made for Linux.</p>
+<h4 id="proton-1">Proton<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#proton-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Proton is a bundle of compatibility tools, maintained by Valve, that bundles things such as Wine and DirectX. Proton is built right into the Steam client by default as well as available for download to run via other applications. This is the gold standard and what you’ll be using, whether you know it or not, for non native games.</p>
+<h5 id="how-does-proton-work">How does Proton work?<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#how-does-proton-work" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><strong>A little about graphics engines:</strong></p>
+<ul>
+<li><strong>OpenGL</strong>:
+<ul>
+<li>This is old, and new games won’t be using this, this is mostly older games now</li>
+</ul>
+</li>
+<li><strong>DirectX 11 (DX11)</strong>
+<ul>
+<li>A Microsoft exclusive, also older at this point, but a lot of games still have it and support it, some new games might not even support DirectX 12 at all and only support DX11.</li>
+</ul>
+</li>
+<li><strong>DirectX 12 (DX12)</strong>
+<ul>
+<li>The newest Microsoft tech, this is a graphics engine that is very complex and essentially gives very low level technology for game engines to use to interact with GPU</li>
+</ul>
+</li>
+<li><strong>Vulkan</strong>
+<ul>
+<li>This is one is cross platform, most games supporting Vulkan are able to be ran natively on Linux. Vulkan is considered the most complex of these graphics engines but gives the most control of GPU.</li>
+</ul>
+</li>
+</ul>
+<p><strong>What proton does with these engines?</strong></p>
+<ul>
+<li>If a game is running in DX11:
+<ul>
+<li>DXVK translates Direct3D 9/10/11 calls to Vulkan — DXVK specifically targets D3D9/10/11, used mostly for D3D10/11; for D3D9 there’s d9vk historically merged into DXVK.</li>
+<li>You would think that this would have some overhead, but under the hood it actually makes some performance improvements where it needs to, often causing games to run faster and smoother on Linux than Windows</li>
+</ul>
+</li>
+<li>If a game is running in DX12:
+<ul>
+<li>For Direct3D 12, vkd3d (and Valve’s vkd3d‑proton fork) translates D3D12 to Vulkan.</li>
+</ul>
+</li>
+</ul>
+<h1 id="playing-your-favorite-games">Playing your favorite games<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#playing-your-favorite-games" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>There are many methods to play games on Linux, I’ll go over a few here</p>
+<h2 id="steam">Steam<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#steam" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Games bought from Steam store by default if non native, will use Proton. However you can also play all your other games via Steam as well.</p>
+<ol>
+<li>Go to <em>Steam</em> <span>→</span> <em>Library</em></li>
+<li>On the bottom left click <em>Add a Game</em></li>
+<li><em>Add Non Steam Game</em></li>
+<li>From here you can browse for an application on your machine</li>
+<li>After adding it, it will appear in your Library list</li>
+</ol>
+<h3 id="changing-proton-versions">Changing Proton versions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#changing-proton-versions" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Right click the newly added game, or the steam bought game</li>
+<li>Click <em>Properties</em></li>
+<li>Go to <em>Compatibility</em></li>
+<li>Check the <em>Force the use of a specific Steam Play compatibility tool</em></li>
+<li>From the dropdown you can select whichever Proton version you want, I usually recommend using <em>Proton Experimental</em> or downloading the latest <em>Proton GE</em> (short for Glorious Eggroll) - If you want to download extra Proton version to select here, you can use something like ProtonUp-Qt<sup><a href="#user-content-fn-11" id="user-content-fnref-11" data-footnote-ref aria-describedby="footnote-label" class="internal alias">9</a></sup></li>
+</ol>
+<p>That is pretty much all you need to play games on Steam, it’s that easy. I will go into some further help below in <a href="#utilizing-gamescope" class="internal alias">Utilizing Gamescope</a></p>
+<h2 id="lutris">Lutris<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#lutris" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Lutris<sup><a href="#user-content-fn-12" id="user-content-fnref-12" data-footnote-ref aria-describedby="footnote-label" class="internal alias">10</a></sup> is a launcher that has a lot of already made game specific scripts that install appropriate Wine, DLLs, fonts etc needed to play games. This is mostly useful for non steam games, although Steam tends to still be the easier route, but if you just can’t get it working in Steam, Lutris is a good fallback. It has plenty of graphical customization for you to use and can even add the configured game to your Steam library, which is just a shortcut that will launch the game through Lutris.</p>
+<h2 id="other-mentions">Other mentions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#other-mentions" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Heroic Game Launcher<sup><a href="#user-content-fn-13" id="user-content-fnref-13" data-footnote-ref aria-describedby="footnote-label" class="internal alias">11</a></sup>
+<ul>
+<li>This is mostly for playing Epic, GOG, and Amazon Prime games</li>
+</ul>
+</li>
+<li>Faugus Launcher<sup><a href="#user-content-fn-14" id="user-content-fnref-14" data-footnote-ref aria-describedby="footnote-label" class="internal alias">12</a></sup>
+<ul>
+<li>Essentially a new age Lutris, very simple to use, really nice</li>
+</ul>
+</li>
+</ul>
+<h1 id="utilizing-gamescope">Utilizing Gamescope<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#utilizing-gamescope" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="what-is-gamescope">What is <a href="https://github.com/ValveSoftware/gamescope" class="external">Gamescope<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>?<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#what-is-gamescope" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>It’s Valve’s own micro Wayland compositor made for gaming that can be ran as a nested or standalone session from a TTY. It’s meant for gaming, and not to be a standalone desktop environment or window manager. The biggest usage you will get out of this is probably if you are in a window manager setup such as Hyprland, because it has the ability to force grab cursor so it doesn’t fly outside your monitor while gaming to other monitors, but it does have plenty of other uses. This is also usable for native Linux games as well for the reasons mentioned below, it’s not only for Proton ran games.</p>
+<p>I won’t go into all of its arguments you can pass to it, but here is just a few examples of ones that I use and what they do: - <code>-f</code> forces fullscreen - <code>--force-grab-cursor</code> forces cursor to stay in Gamescope window, you can still use your window manager’s specific keybinds for navigating to workspaces, but this will just stop your cursor from randomly leaving game window unintentionally - <code>-r 144</code> this will set the game refresh rate to 144hz (obviously change this to your monitors refresh rate) - <code>--adaptive-sync</code> enables adaptive sync if your monitor supports it - <code>--hdr-enabled</code> enables HDR support - <code>-w 3440 -h 1440</code> width and height for game content - <code>-W 3440 -H 1440</code> width and height for output window (you can set this and the one above)</p>
+<p>As I mentioned previously, it also possible to run Gamescope from a display manager, i.e from your TTY, which will work similar to how Steam Deck or the new Steam Machine works. The downside is if you have things you want open like discord, web browser etc, you shouldn’t need to run Gamescope like this unless you’re making a living room Linux home-rolled Steam machine.</p>
+<h2 id="how-to-use-gamescope">How to use Gamescope<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#how-to-use-gamescope" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li>Install using your distributions package manager or build from source</li>
+<li>Add it as a command before you run a game
+<ol>
+<li>For instance if you want to use it with a Steam launched game:
+<ol>
+<li>Right click the game in your Library <span>→</span> <em>Properties</em></li>
+<li>Navigate to <em>Shortcut</em> tab</li>
+<li>For <em>Launch Options</em> add the following <code>gamescope -- %command%</code></li>
+</ol>
+</li>
+<li>Another example:
+<ol>
+<li>From terminal or whatever other launcher you want to use <code>gamescope -- &lt;yourapphere></code> such as <code>gamescope -- vkcube</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="scopebuddy">Scopebuddy<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#scopebuddy" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Scopebuddy<sup><a href="#user-content-fn-15" id="user-content-fnref-15" data-footnote-ref aria-describedby="footnote-label" class="internal alias">13</a></sup> is just a nice little tool to have, it just lets you create a global config file or specific game by game config files to store all your environment variables you want to launch a game as well as all your Gamescope arguments.</p>
+<p>This makes it so instead of typing the following for example to launch a game, for <strong>every</strong> game you add:<br/>
+<code>gamescope -w 3440 -h 1440 -W 3440 -H 1440 -r 144 --force-grab-cursor --adaptive-sync -f --hdr-enabled -- %command%</code></p>
+<p>you would just create a config file in <code>~/.config/scopebuddy/scb.conf</code> with the following:</p>
+<figure data-rehype-pretty-code-figure><pre style="--shiki-light:#F8F8F2;--shiki-dark:#F8F8F2;--shiki-light-bg:#282A36;--shiki-dark-bg:#282A36;" tabindex="0" data-language="conf" data-theme="dracula dracula"><code data-language="conf" data-theme="dracula dracula" style="display:grid;"><span data-line><span>SCB_GAMESCOPE_ARGS=&quot;-w 3440 -h 1440 -W 3440 -H 1440 -r 144 --force-grab-cursor --adaptive-sync -f --hdr-enabled&quot;</span></span>
+<span data-line><span>command+=' '</span></span></code></pre></figure>
+<p>Then whenever you need to add all those standard arguments, that you want for every game anyways, you can just shorten the command to <code>scb -- %command</code></p>
+<h2 id="gamemode">Gamemode<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#gamemode" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Another utility worth mentioning, gamemoderun<sup><a href="#user-content-fn-16" id="user-content-fnref-16" data-footnote-ref aria-describedby="footnote-label" class="internal alias">14</a></sup>. This essentially will remove power saving and governors while playing games. You can prefix this before launching games like so:<br/>
+<code>gamemoderun (gamescope or scb) -- %command</code>, or you can add this to scopebuddy config like so:</p>
+<figure data-rehype-pretty-code-figure><pre style="--shiki-light:#F8F8F2;--shiki-dark:#F8F8F2;--shiki-light-bg:#282A36;--shiki-dark-bg:#282A36;" tabindex="0" data-language="conf" data-theme="dracula dracula"><code data-language="conf" data-theme="dracula dracula" style="display:grid;"><span data-line><span>SCB_GAMESCOPE_ARGS=&quot;-w 3440 -h 1440 -W 3440 -H 1440 -r 144 --force-grab-cursor --adaptive-sync -f --hdr-enabled --mangoapp&quot;</span></span>
+<span data-line><span>command=&quot;gamemoderun $command&quot; # here we add gamemoderun and then $command, so this will launch gamemoderun followed by gamescope with the above gamescope args</span></span></code></pre></figure>
+<p>then in Steam launch options:<br/>
+<code>scb -- %command%</code></p>
+<h2 id="wrap-it-up-b">Wrap it up B<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#wrap-it-up-b" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><img src="../assets/wrapitup.gif" width="250" height="auto" alt/></p>
+<p>If you have any questions let me know, this was mostly from memory, and my journey on Linux gaming has been somewhat long, so I probably missed some stuff here and there.</p>
+<section data-footnotes class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#footnote-label" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li id="user-content-fn-1">
+<p><a href="https://github.com/ValveSoftware/gamescope" class="external">Valve’s Gamescope<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Official Gamescope compositor repository <a href="#user-content-fnref-1" data-footnote-backref aria-label="Back to reference 1" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-2">
+<p><a href="https://github.com/ValveSoftware/Proton" class="external">Valve’s Proton<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Official Proton compatibility layer repository <a href="#user-content-fnref-2" data-footnote-backref aria-label="Back to reference 2" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-3">
+<p><a href="https://store.steampowered.com/" class="external">Steam<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Valve’s digital distribution platform <a href="#user-content-fnref-3" data-footnote-backref aria-label="Back to reference 3" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-4">
+<p><a href="https://gs.statcounter.com/os-market-share/desktop/worldwide" class="external">Linux Desktop Market Share Statistics<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - StatCounter Global Stats tracking Linux desktop usage <a href="#user-content-fnref-4" data-footnote-backref aria-label="Back to reference 4" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-5">
+<p><a href="https://www.steamdeck.com/" class="external">Steam Deck<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Valve’s Linux-based handheld gaming device <a href="#user-content-fnref-5" data-footnote-backref aria-label="Back to reference 5" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-6">
+<p><a href="https://store.steampowered.com/steamos" class="external">SteamOS<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Valve’s Arch-based Linux distribution <a href="#user-content-fnref-6" data-footnote-backref aria-label="Back to reference 6" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-7">
+<p><a href="https://store.steampowered.com/sale/steammachine" class="external">New Steam Machines Announcement<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Valve’s renewed Steam Machine initiative <a href="#user-content-fnref-7" data-footnote-backref aria-label="Back to reference 7" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-8">
+<p><a href="https://www.protondb.com/" class="external">ProtonDB<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Community database for game compatibility ratings <a href="#user-content-fnref-8" data-footnote-backref aria-label="Back to reference 8" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-11">
+<p><a href="https://davidotek.github.io/protonup-qt/" class="external">ProtonUp-Qt<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Proton version manager <a href="#user-content-fnref-11" data-footnote-backref aria-label="Back to reference 9" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-12">
+<p><a href="https://lutris.net/" class="external">Lutris<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Open gaming platform for Linux <a href="#user-content-fnref-12" data-footnote-backref aria-label="Back to reference 10" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-13">
+<p><a href="https://heroicgameslauncher.com/" class="external">Heroic Game Launcher<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Epic, GOG, and Amazon Prime game launcher <a href="#user-content-fnref-13" data-footnote-backref aria-label="Back to reference 11" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-14">
+<p><a href="https://github.com/Faugus/faugus-launcher" class="external">Faugus Launcher<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Modern game launcher for Linux <a href="#user-content-fnref-14" data-footnote-backref aria-label="Back to reference 12" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-15">
+<p><a href="https://docs.bazzite.gg/Advanced/scopebuddy/" class="external">Scopebuddy Documentation<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - Gamescope configuration utility <a href="#user-content-fnref-15" data-footnote-backref aria-label="Back to reference 13" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+<li id="user-content-fn-16">
+<p><a href="https://github.com/FeralInteractive/gamemode" class="external">Gamemode<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> - System optimizer for Linux gaming <a href="#user-content-fnref-16" data-footnote-backref aria-label="Back to reference 14" class="data-footnote-backref internal alias">↩</a></p>
+</li>
+</ol>
+</section></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-3" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#linux-and-its-recent-evolution" data-for="linux-and-its-recent-evolution">Linux and its recent evolution</a></li><li class="depth-0"><a href="#caveats" data-for="caveats">Caveats?</a></li><li class="depth-0"><a href="#checking-that-you-can-play-your-favorite-games" data-for="checking-that-you-can-play-your-favorite-games">Checking that you can play your favorite games</a></li><li class="depth-1"><a href="#protondb" data-for="protondb">ProtonDB</a></li><li class="depth-1"><a href="#native-vs-proton" data-for="native-vs-proton">Native vs Proton</a></li><li class="depth-2"><a href="#native" data-for="native">Native</a></li><li class="depth-2"><a href="#proton" data-for="proton">Proton</a></li><li class="depth-0"><a href="#playing-your-favorite-games" data-for="playing-your-favorite-games">Playing your favorite games</a></li><li class="depth-1"><a href="#steam" data-for="steam">Steam</a></li><li class="depth-2"><a href="#changing-proton-versions" data-for="changing-proton-versions">Changing Proton versions</a></li><li class="depth-1"><a href="#lutris" data-for="lutris">Lutris</a></li><li class="depth-1"><a href="#other-mentions" data-for="other-mentions">Other mentions</a></li><li class="depth-0"><a href="#utilizing-gamescope" data-for="utilizing-gamescope">Utilizing Gamescope</a></li><li class="depth-1"><a href="#what-is-gamescope" data-for="what-is-gamescope">What is Gamescope?</a></li><li class="depth-1"><a href="#how-to-use-gamescope" data-for="how-to-use-gamescope">How to use Gamescope</a></li><li class="depth-1"><a href="#scopebuddy" data-for="scopebuddy">Scopebuddy</a></li><li class="depth-1"><a href="#gamemode" data-for="gamemode">Gamemode</a></li><li class="depth-1"><a href="#wrap-it-up-b" data-for="wrap-it-up-b">Wrap it up B</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/neonvoidx">github</a></li><li><a href="mailto:me+blog@neonvoid.dev">email</a></li><li><a href="https://matrix.to/#/@neon_void:matrix.org">matrix</a></li><li><a href="https://discord.com/users/184896010969939969">discord</a></li><li><a href="https://ko-fi.com/neonvoidx">kofi</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript.js" type="module" data-persist="true"></script></html>
