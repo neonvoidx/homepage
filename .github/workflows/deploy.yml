@@ -3,11 +3,6 @@ name: Deploy to Homepage
 on:
   push:
     branches: [v4]
-    paths:
-      - "content/**"
-      - "quartz.config.ts"
-      - "quartz.layout.ts"
-      - "quartz-static/**"
   workflow_dispatch:
 
 jobs:
