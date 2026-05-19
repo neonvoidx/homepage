@@ -3,7 +3,7 @@ title: '~'
 socialImage: og-image.png
 ---
 <div style="text-align: center;">
-  <img src="./images/neonvoid.png" alt="neonvoid profile" style="width: 80%; max-width: 400px; border-radius: 50%; margin: 2em auto;" />
+  <img src="/assets/neonvoid.png" alt="neonvoid profile" style="width: 80%; max-width: 400px; border-radius: 50%; margin: 2em auto;" />
 </div>
 
 <div style="background-color: #1a1a2e; border-radius: 8px; padding: 2em; max-width: 720px; margin: 2em auto; font-family: 'Fira Mono', 'Consolas', monospace; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
