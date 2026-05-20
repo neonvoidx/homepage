@@ -1,12 +1,13 @@
 ---
-created: '2025-12-08 19:46'
+created: "2025-12-08 19:46"
 draft: false
 title: Is NixOS worth the hype?
 tags:
   - linux
   - nixos
 ---
-TLDR: No
+
+TLDR: ~~No~~ Ya, it's actually god tier
 
 # What is NixOS
 
@@ -67,4 +68,3 @@ NixOS[^1] is a declarative system. Essentially, if you took the dotfile mindset 
 [^10]: <https://git-scm.com/>
 
 [^11]: <https://www.ansible.com/>
-
