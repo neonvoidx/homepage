@@ -38,13 +38,13 @@ NixOS[^1] is a declarative system. Essentially, if you took the dotfile mindset 
       - For example, zsh might have a decent amount of Nix language configuration options, but you'll often find yourself appending things using a multiline comment syntax, which in my opinion makes it very hard to read. You lose syntax highlighting and LSP for that filetype as well (although I'm sure there is probably some wonky hack to get around this)
 - Storage space: NixOS, because of its rebuild system, takes up A LOT of storage over time; however, you can get around this by adding a garbage collection option to your configs
 
-# My (subjective) thoughts on why NixOS isn't a good daily driver
+# ~~My (subjective) thoughts on why NixOS isn't a good daily driver~~
 
-I truly see the NixOS use case; for me though, that is more for multi-machine setups, maybe even servers. What I don't find it useful for is a daily driver for one machine. That feeling in something like Arch[^6] where you can just install what you need instantly isn't necessarily the same in Nix.
+~~I truly see the NixOS use case; for me though, that is more for multi-machine setups, maybe even servers. What I don't find it useful for is a daily driver for one machine. That feeling in something like Arch[^6] where you can just install what you need instantly isn't necessarily the same in Nix.~~
 
-For me, I can get a pretty reproducible system in Arch already. I have btrfs[^7] with snapper[^8] hooked into GRUB[^9] for easy rollbacks. I have my dotfiles stored in Git[^10], easily cloneable, and I have an Ansible[^11] playbook to take care of the rest.
+~~For me, I can get a pretty reproducible system in Arch already. I have btrfs[^7] with snapper[^8] hooked into GRUB[^9] for easy rollbacks. I have my dotfiles stored in Git[^10], easily cloneable, and I have an Ansible[^11] playbook to take care of the rest.~~
 
-All of this being said, I do plan to mess around more with NixOS in the future, maybe it'll grow on me, I'm not sure. It's definitely interesting to say the least.
+~~All of this being said, I do plan to mess around more with NixOS in the future, maybe it'll grow on me, I'm not sure. It's definitely interesting to say the least.~~
 
 [^1]: <https://nixos.org/>
 
