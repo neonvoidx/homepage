@@ -10,7 +10,7 @@ tags:
   - Gamescope
   - proton
   - wine
-updated: "2026-07-29 15:16"
+modified: "2026-07-29 15:16"
 title: Linux Gaming 101 (Wayland)
 ---
 
