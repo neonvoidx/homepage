@@ -7,7 +7,7 @@ tags:
   - nixos
 ---
 
-TLDR: ~~No~~ Ya, it's actually god tier
+TLDR: ~~No~~ Ya, it's actually god tier, check the new post here [Why NixOS is the best Linux distro](./nixos-bis.md)
 
 # What is NixOS
 

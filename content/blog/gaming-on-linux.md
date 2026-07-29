@@ -1,5 +1,5 @@
 ---
-created: '2025-11-25 20:56'
+created: "2025-11-25 20:56"
 draft: false
 tags:
   - gaming
@@ -10,8 +10,10 @@ tags:
   - Gamescope
   - proton
   - wine
+updated: "2026-07-29 15:16"
 title: Linux Gaming 101 (Wayland)
 ---
+
 ![Gabe the G|350](gabe.png)
 
 # Linux and its recent evolution
@@ -38,7 +40,7 @@ _However there are some caveats..._
   - NVIDIA drivers can be wonky, some users often report getting about 10-20% less performance on Linux. This is because NVIDIA's drivers are not open source and integrated into distributions like AMD, which are integrated into mesa and amdgpu, which are often automatically bundled with your distribution. You'll have to go through some setup here and you'll also have to check which drivers you want to use, closed vs open, and probably modify some kernel launch arguments.
   - NVIDIA GPU also require some extra environmental arguments on Wayland
   - NVIDIA’s proprietary drivers historically had gaps (Wayland/GBM vs EGLStreams, tooling differences), but performance varies widely by driver version, kernel, game, and Proton/Wine configuration. NVIDIA has improved Wayland/GBM support in recent drivers.
-- Not all games run on Linux. At the time of writing this though, a large majority of popular titles are reported playable. Some games will require some manual tweaking, unlike Windows where you just click install and play, this won't always be the case for Linux though, luckily there are helpful resources most of the time to make this easier.
+- Not all games run on Linux. At the time of writing this though, a large majority of popular titles are reported playable. Some games will require some manual tweaking, unlike Windows where you just click install and play, this won't always be the case for Linux though, luckily there are helpful resources most of the time to make this easier. Most games are click and play its that simple. The major issues with most games are kernel level anticheat (looking at you stinky Riot and Ubisoft).
 
 Phew. Got past the bad stuff, let's move on...
 
@@ -124,7 +126,7 @@ Games bought from Steam store by default if non native, will use Proton. However
 2. Click _Properties_
 3. Go to _Compatibility_
 4. Check the _Force the use of a specific Steam Play compatibility tool_
-5. From the dropdown you can select whichever Proton version you want, I usually recommend using _Proton Experimental_ or downloading the latest _Proton GE_ (short for Glorious Eggroll) - If you want to download extra Proton version to select here, you can use something like ProtonUp-Qt[^11]
+5. From the dropdown you can select whichever Proton version you want, I usually recommend using _Proton Experimental_ or downloading the latest _Proton GE_ (short for Glorious Eggroll) - If you want to download extra Proton version to select here, you can use something like ProtonUp-Qt[^11]. ProtonGE and Proton CachyOS both have a lot of tweaks that are really nice, so myself I usually default to Proton GE latest. There are some circumstances where games need hotfixes, for example, the latest season of Diablo 4 was broken on release and required a hotfix from Valve and Blizzard. This required using Proton Experimental while going to Proton Experimental's options and selecting the bleeding edge beta build.
 
 That is pretty much all you need to play games on Steam, it's that easy. I will go into some further help below in [Utilizing Gamescope](#utilizing-gamescope)
 
@@ -137,13 +139,13 @@ Lutris[^12] is a launcher that has a lot of already made game specific scripts t
 - Heroic Game Launcher[^13]
   - This is mostly for playing Epic, GOG, and Amazon Prime games
 - Faugus Launcher[^14]
-  - Essentially a new age Lutris, very simple to use, really nice
+  - Essentially a new age Lutris, very simple to use, really nice, but to be honest Steam is the way to go for most things.
 
 # Utilizing Gamescope
 
 ## What is [Gamescope](https://github.com/ValveSoftware/gamescope)?
 
-It's Valve's own micro Wayland compositor made for gaming that can be ran as a nested or standalone session from a TTY. It's meant for gaming, and not to be a standalone desktop environment or window manager. The biggest usage you will get out of this is probably if you are in a window manager setup such as Hyprland, because it has the ability to force grab cursor so it doesn't fly outside your monitor while gaming to other monitors, but it does have plenty of other uses. This is also usable for native Linux games as well for the reasons mentioned below, it's not only for Proton ran games.
+It's Valve's own micro Wayland compositor made for gaming that can be ran as a nested or standalone session from a TTY. It's meant for gaming, and not to be a standalone desktop environment or window manager. The biggest usage you will get out of this is probably if you are in a window manager setup such as Hyprland, because it has the ability to force grab cursor so it doesn't fly outside your monitor while gaming to other monitors, but it does have plenty of other uses. This is also usable for native Linux games as well for the reasons mentioned below, it's not only for Proton ran games. **Update for Hyprland:** Hyprland now has a very nice window rule you can apply to your games `confine_pointer = true` which will take care of your mouse leaving the game window without manually hitting a keybind to focus another workspace, this essentially remove the need for gamescope for this particular scenario.
 
 I won't go into all of its arguments you can pass to it, but here is just a few examples of ones that I use and what they do: - `-f` forces fullscreen - `--force-grab-cursor` forces cursor to stay in Gamescope window, you can still use your window manager's specific keybinds for navigating to workspaces, but this will just stop your cursor from randomly leaving game window unintentionally - `-r 144` this will set the game refresh rate to 144hz (obviously change this to your monitors refresh rate) - `--adaptive-sync` enables adaptive sync if your monitor supports it - `--hdr-enabled` enables HDR support - `-w 3440 -h 1440` width and height for game content - `-W 3440 -H 1440` width and height for output window (you can set this and the one above)
 
@@ -222,4 +224,3 @@ If you have any questions let me know, this was mostly from memory, and my journ
 [^15]: [Scopebuddy Documentation](https://docs.bazzite.gg/Advanced/scopebuddy/) - Gamescope configuration utility
 
 [^16]: [Gamemode](https://github.com/FeralInteractive/gamemode) - System optimizer for Linux gaming
-
